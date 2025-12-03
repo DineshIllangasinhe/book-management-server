@@ -66,3 +66,26 @@ exports.login = async (req, res, next) => {
     next(err);
   }
 };
+
+exports.getMe = async (req, res, next) => {
+  try {
+    const user = await User.findByPk(req.user.id, {
+      attributes: { exclude: ['password_hash'] }
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        createdAt: user.createdAt
+      }
+    });
+  } catch (err) {
+    next(err);
+  }
+};
