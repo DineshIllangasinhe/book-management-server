@@ -1,4 +1,4 @@
-Backend API
+# Book Management Server
 
 A simple Node.js backend API for managing books with user authentication. Built with Express, MySQL, and JWT tokens.
 
